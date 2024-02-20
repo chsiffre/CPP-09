@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:27:05 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/19 16:30:55 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:58:45 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class BitcoinExchange {
     public :
         BitcoinExchange();
         ~BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &other);
+        BitcoinExchange &operator=(const BitcoinExchange &other);
         void fillStruct(std::string line);
         void parseAndFind(std::string Filename);
         void checkDate(int year, int month, int day);
