@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:27:08 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/20 11:29:18 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:17:19 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,7 @@ BitcoinExchange::BitcoinExchange()
         fillStruct(line);
     }
     file.close();
-    std::map<std::string, float>::iterator it;
-    // for (it = KeyValue.begin(); it != KeyValue.end(); ++it) {
-    //     std::cout << "Clé : " << it->first << ", Valeur : " << it->second << std::endl;
-    // }
-    // exit(1);
-
 }
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
-// {
-//     this->DataStruct.date = other.DataStruct.date;
-//     this->DataStruct.value = other.DataStruct.value;
-//     this->KeyValue.clear();
-//     std::map<std::string, float>::const_iterator it;
-//     for (it = other.KeyValue.begin(); it != other.KeyValue.end(); ++it)
-//     {
-//         this->KeyValue[it->first] = it->second;
-//     }
-// }
-
-// BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
-// {
-//     if (this != &other)
-//     {
-//         this->DataStruct.date = other.DataStruct.date;
-//         this->DataStruct.value = other.DataStruct.value;
-//         this->KeyValue.clear();
-//         std::map<std::string, float>::const_iterator it;
-//         for (it = other.KeyValue.begin(); it != other.KeyValue.end(); ++it)
-//         {
-//             this->KeyValue[it->first] = it->second;
-//         }
-//     }
-//     return *this;
-// }
 
 void BitcoinExchange::fillStruct(std::string line)
 {
@@ -167,13 +134,10 @@ bool BitcoinExchange::leapYear(int year)
 void BitcoinExchange::findAndResult()
 {
     std::map<std::string, float>::iterator it;
-    // std::cout << DataStruct.date << std::endl;
-    // exit(1);
     it = this->KeyValue.lower_bound(DataStruct.date);
     if (it == this->KeyValue.end())
     {
         it--;
-        // std::cout << (*it).second << std::endl;
         std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << float(DataStruct.value * (*it).second) <<  std::endl;
         return ;
     }
@@ -186,7 +150,6 @@ void BitcoinExchange::findAndResult()
     {
         if ((*it).first != DataStruct.date)
             it--;
-        // std::cout << (*it).second << std::endl;
         std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << (float)(DataStruct.value * (*it).second) << std::endl;
     }
 }
