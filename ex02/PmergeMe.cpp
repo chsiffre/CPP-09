@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:16 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/21 17:55:56 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:58:18 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,61 @@ PmergeMe::~PmergeMe()
     
 }
 
+
+bool comparePairs(const std::pair<int, int>& pair1, const std::pair<int, int>& pair2) {
+    return pair1.first < pair2.first;
+}
+
+void PmergeMe::printVectors() 
+{
+    std::cout << "Left Numbers Vector: ";
+    printVector(leftNumbersVector);
+
+    std::cout << "Right Numbers Vector: ";
+    printVector(rightNumbersVector);
+}
+
 void PmergeMe::groupByPairsDeque(const std::vector<int>& numbers) 
 {
-    // pairsDeque.clear();  // Effacer le deque avant de le remplir à nouveau
+    
+    pairsDeque.clear();
 
     for (size_t i = 0; i < numbers.size(); i += 2) {
         if (i + 1 < numbers.size()) {
-            pairsDeque.push_back(std::make_pair(numbers[i], numbers[i + 1]));
+            std::pair<int, int> currentPair = std::make_pair(numbers[i], numbers[i + 1]);
+            if (currentPair.first < currentPair.second) {
+                std::swap(currentPair.first, currentPair.second);
+            }
+            pairsDeque.push_back(currentPair);
         }
+    }
+    std::sort(pairsDeque.begin(), pairsDeque.end(), comparePairs);
+}
+
+void PmergeMe::separatePairs() {
+    leftNumbersVector.clear(); 
+    rightNumbersVector.clear();
+
+    for (size_t i = 0; i < pairsDeque.size(); ++i) {
+        leftNumbersVector.push_back(pairsDeque[i].first);
+        rightNumbersVector.push_back(pairsDeque[i].second);
     }
 }
 
 void PmergeMe::groupByPairsVector(const std::vector<int>& numbers) 
 {
-    pairsVector.clear();  // Effacer le vector avant de le remplir à nouveau
+    pairsVector.clear();
 
     for (size_t i = 0; i < numbers.size(); i += 2) {
         if (i + 1 < numbers.size()) {
-                pairsVector.push_back(std::make_pair(numbers[i], numbers[i + 1]));
+            std::pair<int, int> currentPair = std::make_pair(numbers[i], numbers[i + 1]);
+        if (currentPair.first < currentPair.second) {
+                std::swap(currentPair.first, currentPair.second);
+            }
+            pairsVector.push_back(currentPair);
         }
     }
+    std::sort(pairsVector.begin(), pairsVector.end(), comparePairs);
 }
 
 void PmergeMe::displayPairsDeque() const {

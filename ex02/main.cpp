@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:11:53 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/21 18:07:37 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:21:16 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int main (int ac, char **argv)
     merge.displayPairsDeque();
     std::cout << std::endl;
     merge.displayPairsVector();
+    merge.separatePairs(); 
+    merge.printVectors(); 
     
     return 0;
 }
