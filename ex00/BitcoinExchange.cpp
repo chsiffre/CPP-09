@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:27:08 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/21 16:17:19 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:50:38 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void BitcoinExchange::checkDate(int year, int month, int day)
     if (year < 2009 || (year == 2009 && month == 1 && day < 2))
         throw(std::string) "No price before 2009-01-02";
     if (day > months[month - 1])
-        throw(std::string) "Invalid day oh the month";
+        throw(std::string) "Invalid day on the month";
 }
 
 void BitcoinExchange::checkValue(float value)
@@ -138,7 +138,7 @@ void BitcoinExchange::findAndResult()
     if (it == this->KeyValue.end())
     {
         it--;
-        std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << float(DataStruct.value * (*it).second) <<  std::endl;
+        std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << (DataStruct.value * (*it).second) <<  std::endl;
         return ;
     }
     if ( it == this->KeyValue.begin())
@@ -150,7 +150,7 @@ void BitcoinExchange::findAndResult()
     {
         if ((*it).first != DataStruct.date)
             it--;
-        std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << (float)(DataStruct.value * (*it).second) << std::endl;
+        std::cout << DataStruct.date << " => " << DataStruct.value << " = " << std::setprecision(7) << (DataStruct.value * (*it).second) << std::endl;
     }
 }
 

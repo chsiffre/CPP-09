@@ -6,11 +6,19 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:16 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/27 15:58:18 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:43:23 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+void imprimerVecteur(const std::vector<int>& vec) {
+    std::cout << "Contenu du vecteur : ";
+    for (size_t i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i] << " ";
+    }
+    std::cout << std::endl;
+}
 
 PmergeMe::PmergeMe()
 {
@@ -60,7 +68,77 @@ void PmergeMe::separatePairs() {
         leftNumbersVector.push_back(pairsDeque[i].first);
         rightNumbersVector.push_back(pairsDeque[i].second);
     }
+    leftNumbersVector.insert(leftNumbersVector.begin(), rightNumbersVector[0]);
+    rightNumbersVector.erase(rightNumbersVector.begin());
+    
+    
 }
+
+void PmergeMe::makeGroups()
+{
+    // for (size_t i = 0; i < rightNumbersVector.size(); i++)
+    // {
+    //     std::cout << rightNumbersVector[i] << " ";
+    // }
+    // std::cout << std::endl;
+    // if (rightNumbersVector.size() < 2) {
+    //     std::cerr << "Le nombre de groupes doit être au moins 2." << std::endl;
+    //     return;
+    // }
+    int power = 2;
+    bool firstCalc = true;
+    size_t i = 2;
+    size_t sizeGroup = 2;
+    size_t end = 0;
+    sizeGroups.push_back(2);
+    // std::cout << rightNumbersVector.size() << std::endl;
+    while (i < rightNumbersVector.size())
+    {
+        sizeGroup = pow(2, power) - sizeGroup;
+        power++;
+        end = i + sizeGroup;
+        
+        firstCalc = false;
+        if (end > rightNumbersVector.size())
+            end = rightNumbersVector.size();
+        if (sizeGroup > rightNumbersVector.size() - i)
+            sizeGroups.push_back(rightNumbersVector.size() - i);
+        else
+            sizeGroups.push_back(sizeGroup);
+        i = end;
+    }
+    
+    
+    for (size_t x = 0; x < sizeGroups.size(); x++)
+    {
+        std::cout << sizeGroups[x] << std::endl;
+    }
+    
+}
+
+void PmergeMe::setIndexs()
+{
+    size_t i = 0;
+    int iBySizeGroup = 0;
+    std::vector<int> reverser;
+
+    while (i < sizeGroups.size())
+    {
+        int x = -1;
+        while (++x < sizeGroups[i])
+            reverser.push_back(rightNumbersVector[iBySizeGroup++]);
+        std::reverse(reverser.begin(), reverser.end());
+        // imprimerVecteur(reverser);
+        size_t y = -1;
+        // std::cout << reverser.size() << std::endl;
+        while (++y < reverser.size())
+            rightNumbersVectorIndexed.push_back(reverser[y]);
+        reverser.clear();
+        i++;
+    }
+    imprimerVecteur(rightNumbersVectorIndexed);
+}
+
 
 void PmergeMe::groupByPairsVector(const std::vector<int>& numbers) 
 {

@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/27 15:19:58 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:03:11 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <vector>
 # include <cstdlib>
 #include <algorithm>
+#include <math.h>
 
 class PmergeMe {
   
@@ -43,11 +44,17 @@ class PmergeMe {
         void displayPairsVector() const;
         void printVectors();
         void separatePairs();
+        void makeGroups();
+        void setIndexs();
         
         std::deque<std::pair<int, int> > pairsDeque;
         std::vector<std::pair<int, int> > pairsVector;
-        std::vector<int> leftNumbersVector; 
+        std::vector<int> leftNumbersVector;
         std::vector<int> rightNumbersVector;
+        std::vector<int> rightNumbersVectorIndexed;
+        std::vector<int> sizeGroups;
+        std::vector<int> indexs;
+    
 };
 
 
