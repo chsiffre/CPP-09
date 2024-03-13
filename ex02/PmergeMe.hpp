@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/29 15:03:11 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:55:11 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ class PmergeMe {
         void separatePairs();
         void makeGroups();
         void setIndexs();
+        void insertByVec(std::vector<int>& sortedVec, const std::vector<int>& unsortedVec);
+        int dichoInsertVec(const std::vector<int>& sortedVec, int nb);
         
         std::deque<std::pair<int, int> > pairsDeque;
         std::vector<std::pair<int, int> > pairsVector;

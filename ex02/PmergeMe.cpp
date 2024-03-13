@@ -6,7 +6,7 @@
 /*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:16 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/02/29 17:43:23 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:57:33 by chsiffre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void PmergeMe::makeGroups()
     //     return;
     // }
     int power = 2;
-    bool firstCalc = true;
     size_t i = 2;
     size_t sizeGroup = 2;
     size_t end = 0;
@@ -98,7 +97,6 @@ void PmergeMe::makeGroups()
         power++;
         end = i + sizeGroup;
         
-        firstCalc = false;
         if (end > rightNumbersVector.size())
             end = rightNumbersVector.size();
         if (sizeGroup > rightNumbersVector.size() - i)
@@ -137,8 +135,36 @@ void PmergeMe::setIndexs()
         i++;
     }
     imprimerVecteur(rightNumbersVectorIndexed);
+    insertByVec(leftNumbersVector ,rightNumbersVectorIndexed);
 }
 
+int PmergeMe::dichoInsertVec(const std::vector<int>& sortedVec, int nb) 
+{
+    int start = 0;
+    int end = sortedVec.size() - 1;
+
+    while (start <= end) 
+    {
+        int middle = (start + end) / 2;
+        if (sortedVec[middle] == nb)
+            return middle;
+        else if (sortedVec[middle] < nb)
+            start = middle + 1;
+        else
+            end = middle - 1;
+    }
+    return start;
+}
+
+void PmergeMe::insertByVec(std::vector<int>& sortedVec, const std::vector<int>& unsortedVec) 
+{
+    for (std::vector<int>::const_iterator it = unsortedVec.begin(); it != unsortedVec.end(); ++it) 
+    {
+        int pos = dichoInsertVec(sortedVec, *it);
+        sortedVec.insert(sortedVec.begin() + pos, *it);
+    }
+    imprimerVecteur(sortedVec);
+}
 
 void PmergeMe::groupByPairsVector(const std::vector<int>& numbers) 
 {
