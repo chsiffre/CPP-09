@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: charles <charles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by chsiffre          #+#    #+#             */
-/*   Updated: 2024/03/13 11:55:11 by chsiffre         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:45:49 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,30 @@ class PmergeMe {
         void displayPairsDeque() const;
         void displayPairsVector() const;
         void printVectors();
-        void separatePairs();
-        void makeGroups();
-        void setIndexs();
+        void separatePairsVec();
+        void separatePairsDeq();
+        void makeGroupsVec();
+        void makeGroupsDeq();
+        void setIndexsVec();
+        void setIndexsDeq();
         void insertByVec(std::vector<int>& sortedVec, const std::vector<int>& unsortedVec);
+        void insertByVec(std::deque<int>& sortedDeq, const std::deque<int>& unsortedDeq);
         int dichoInsertVec(const std::vector<int>& sortedVec, int nb);
+        int dichoInsertDeq(const std::deque<int>& sortedDeq, int nb);
         
-        std::deque<std::pair<int, int> > pairsDeque;
         std::vector<std::pair<int, int> > pairsVector;
         std::vector<int> leftNumbersVector;
         std::vector<int> rightNumbersVector;
         std::vector<int> rightNumbersVectorIndexed;
-        std::vector<int> sizeGroups;
-        std::vector<int> indexs;
-    
+        std::vector<int> sizeGroupsVec;
+        std::vector<int> indexsVec;
+
+        std::deque<std::pair<int, int> > pairsDeque;
+        std::deque<int> leftNumbersDeq;
+        std::deque<int> rightNumbersDeq;
+        std::deque<int> rightNumbersDeqIndexed;
+        std::deque<int> sizeGroupsDeq;
+        std::deque<int> indexsDeq;
 };
 
 

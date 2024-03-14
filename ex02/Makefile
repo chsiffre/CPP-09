@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chsiffre <chsiffre@student.42.fr>          +#+  +:+       +#+         #
+#    By: charles <charles@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 10:19:57 by charles           #+#    #+#              #
-#    Updated: 2024/02/21 17:55:41 by chsiffre         ###   ########.fr        #
+#    Updated: 2024/03/14 19:31:11 by charles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main PmergeMe
+FILES		= main PmergeMeVec PmergeMeDeq
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
